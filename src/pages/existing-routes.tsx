@@ -21,7 +21,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
       <Provider store={store}>
         <Layout>
-          <StoryPane title="Rosehill Cycleway" body="hello word!"/>
+            <StoryPane title="Existing Bike Routes" body="biking sucks rn"/>
         </Layout>
       </Provider>
   )
