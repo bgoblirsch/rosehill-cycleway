@@ -1,9 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from 'styled-components'
-import { Drawer, List, Stack } from "@mui/material";
-import NavButton from "./components/NavButton";
-import appRoutes from "../../routes/appRoutes";
+import NavButton from "../NavButton";
 
 const navButtons = [
     {
