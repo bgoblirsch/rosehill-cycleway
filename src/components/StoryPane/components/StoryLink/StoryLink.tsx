@@ -8,7 +8,7 @@ interface StoryLinkProps {
 
 const StoryLink: React.FC<StoryLinkProps> = ({ text, to }) => {
   return (
-    <StyledLink href={to}>
+    <StyledLink href={to} target="_blank">
         {text}
     </StyledLink>
   )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from 'styled-components'
-import ismobilejs from "ismobilejs"
-import { AttributionControl, GeoJSON, MapContainer, TileLayer } from 'react-leaflet'
+
+import { AttributionControl, GeoJSON, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 
 import NavButton from "../NavButton"
 import Overview from "../StoryPane/Overview"
@@ -21,18 +21,26 @@ import ward40Mask from "../Map/layers/ward40_mask";
 import rosehillRoute from "../Map/layers/rosehill_cycleway_route";
 import existingRoutes from "../Map/layers/existing_routes";
 import allRoutes from "../Map/layers/all_routes";
-import rosehillRouteOffset from "../Map/layers/rosehill_route_offset"
-import projectOverviewPOIs from "../Map/layers/project_overview_pois"
+import rosehillRouteOffset from "../Map/layers/rosehill_route_offset";
+import Markers from "../Map/components/Markers"
 
-import { allRoutesStyle, existingRoutesStyle } from "../../configs/layerStyles"
+import { allRoutesStyle, existingRoutesStyle, rosehillRouteStyle } from "../../configs/layerStyles";
 import { boundaryOptions, dashedRouteOptions, projectOverviewRouteSettins, ward40MaskOptions, rosehillRouteOptions } from "../../configs/layerStyles"
-import projectPOIs from "../Map/layers/project_pois"
 
+import ismobilejs from "ismobilejs"
 const isMobile = ismobilejs(window.navigator).any;
+
+import L from "leaflet"
+function createIcon(url:string) {
+  return new L.Icon({
+    iconSize: [48,48],
+    iconUrl: url,
+  });
+}
 
 const App: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const handleClick = (payload:number) => {
+  const handleState = (payload:number) => {
     if (payload > 3) {
       setSelectedIndex(0)
     } else if (payload < 0) {
@@ -41,31 +49,58 @@ const App: React.FC = () => {
       setSelectedIndex(payload)
     }
   }
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+
+  // the required distance between touchStart and touchEnd to be detected as a swipe
+  const minSwipeDistance = 50 
+
+  const onTouchStart = (e:any) => {
+    if (!isMobile) return
+    setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e:any) => setTouchEnd(e.targetTouches[0].clientX)
+
+  const onTouchEnd = () => {
+    if (!isMobile) return 
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isLeftSwipe) {
+      handleState(selectedIndex+1)
+    }
+    if (isRightSwipe) {
+      handleState(selectedIndex-1)
+    }
+  }
   return (
       <AppWrapper>
           {!isMobile && <NavWrapper>
-            <NavButtonWrapper active={selectedIndex == 0} onClick={() => handleClick(0)}>
+            <NavButtonWrapper active={selectedIndex == 0} onClick={() => handleState(0)}>
               <NavButton icon={<Home color="white"/>} text="Project Overview" />
             </NavButtonWrapper>
-            <NavButtonWrapper active={selectedIndex == 1}onClick={() => handleClick(1)}>
+            <NavButtonWrapper active={selectedIndex == 1}onClick={() => handleState(1)}>
               <NavButton icon={<Bike color="white" size={24}/>} text="Existing Bike Routes" />
             </NavButtonWrapper>
-            <NavButtonWrapper active={selectedIndex == 2} onClick={() => handleClick(2)}>
+            <NavButtonWrapper active={selectedIndex == 2} onClick={() => handleState(2)}>
               <NavButton icon={<Hourglass color="white"/>} text="Future Bike Routes" />
             </NavButtonWrapper>
-            <NavButtonWrapper active={selectedIndex == 3} onClick={() => handleClick(3)}>
+            <NavButtonWrapper active={selectedIndex == 3} onClick={() => handleState(3)}>
               <NavButton icon={<RouteIcon color="white"/>} text="Cycleway Route" />
             </NavButtonWrapper>
           </NavWrapper>}
-          {isMobile && <NavWrapper  >
-              <StyledButton onClick={() => handleClick(selectedIndex-1)}>{"<"}</StyledButton>
+          {isMobile && <NavWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+              <StyledButton onClick={() => handleState(selectedIndex-1)}>{"<"}</StyledButton>
               <TitleWrapper>
                 {selectedIndex === 0 && "Project Overview"}
                 {selectedIndex === 1 && "Existing Bike Routes"}
                 {selectedIndex === 2 && "Future Bike Routes"}
                 {selectedIndex === 3 && "Cycleway Route"}
               </TitleWrapper>
-              <StyledButton onClick={() => handleClick(selectedIndex+1)}>{">"}</StyledButton>
+              <StyledButton onClick={() => handleState(selectedIndex+1)}>{">"}</StyledButton>
           </NavWrapper>}
           <MapWrapper>
             <MapContainer
@@ -78,21 +113,32 @@ const App: React.FC = () => {
                 selectedIndex={selectedIndex}
               />
               <TileLayer
-                  attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                  attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">MapTiler</a>, &copy; <a href="http://openstreetmap.org">OSM</a> contributors'
                   url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
               />
                   <AttributionControl position="bottomleft"/>
-                  <GeoJSON data={ward40Boundary} pathOptions={boundaryOptions}></GeoJSON>
-                  <GeoJSON data={ward40Mask} pathOptions={ward40MaskOptions}></GeoJSON>
-                  {(selectedIndex == 0 || selectedIndex == 3) && <GeoJSON data={rosehillRoute} pathOptions={projectOverviewRouteSettins}></GeoJSON>}
-                  {selectedIndex == 0 && <GeoJSON data={projectOverviewPOIs}></GeoJSON>}
-                  {selectedIndex == 1 && <GeoJSON  data={existingRoutes} onEachFeature={existingRoutesStyle}></GeoJSON>}
-                  {selectedIndex == 2 && <GeoJSON  data={allRoutes} onEachFeature={allRoutesStyle}></GeoJSON>}
-                  {selectedIndex == 2 && <GeoJSON  data={rosehillRouteOffset} pathOptions={dashedRouteOptions}></GeoJSON>}
-                  {selectedIndex == 3 && <GeoJSON data={projectPOIs} onEachFeature={allRoutesStyle}></GeoJSON>}
+                  <GeoJSON data={ward40Boundary} pathOptions={boundaryOptions}/>
+                  <GeoJSON data={ward40Mask} pathOptions={ward40MaskOptions}/>
+                  <Marker position={[41.991421428231256, -87.675034918123188]} icon={createIcon("https://i.imgur.com/dGbqOJ6.png")}>
+                    <Popup>
+                      Peterson/Ridge Metra Station
+                    </Popup>
+                  </Marker>
+                  <Marker position={[41.987, -87.6885]} icon={createIcon("https://i.imgur.com/ECkFbCf.png")}>
+                    <Popup>
+                      West Ridge Nature Park
+                    </Popup>
+                  </Marker>
+                  
+                  {(selectedIndex == 0 || selectedIndex == 3) && <GeoJSON data={rosehillRoute} onEachFeature={rosehillRouteStyle}></GeoJSON>}
+                  
+                  {selectedIndex == 1 && <GeoJSON  data={existingRoutes} onEachFeature={existingRoutesStyle}/>}
+                  {selectedIndex == 2 && <GeoJSON  data={allRoutes} onEachFeature={allRoutesStyle}/>}
+                  {selectedIndex == 2 && <GeoJSON  data={rosehillRouteOffset} pathOptions={dashedRouteOptions}/>}
+                  {selectedIndex == 3 && <Markers/>}
           </MapContainer>
           </MapWrapper>
-          <StoryPane>
+          <StoryPane  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
             {selectedIndex === 0 && <Overview/>}
             {selectedIndex === 1 && <ExistingRoutes/>}
             {selectedIndex === 2 && <FutureRoutes/>}
@@ -110,10 +156,10 @@ const AppWrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
-    height: ${isMobile ? "100%" : "100%"};
+    height: ${isMobile ? "60%" : "100%"};
     min-height: 450px;
-    flex:1;
     position: relative;
+    width: 55%;
     min-width: ${isMobile ? "100%" : "600px"};
 `
 
@@ -169,7 +215,7 @@ const StyledButton = styled.button`
 
 const StoryPane = styled.div`
   width: ${isMobile ? "100vw" : "30%"};
-  height: ${!isMobile ? "100vh" : "100%"};
+  height: ${isMobile ?  "60%": "100vh"};
   flex: 1;
   display: flex;
   justify-content: center;
@@ -177,6 +223,7 @@ const StoryPane = styled.div`
   right: 0;
   color: white;
   overflow: scroll;
+  overflow-x: hidden;
 `
 
 export default App

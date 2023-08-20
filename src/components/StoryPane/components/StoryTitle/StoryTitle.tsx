@@ -15,7 +15,7 @@ const StoryTitle: React.FC<StoryTitleProps> = ({ text }) => {
 
 const StyledHeader = styled.h1`
   font-size: 24px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 `
 
 export default StoryTitle
