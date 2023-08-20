@@ -160,7 +160,7 @@ const AppWrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
-    height: ${isMobile ? "60%" : "100%"};
+    height: ${isMobile ? "50%" : "100%"};
     min-height: 450px;
     position: relative;
     width: 55%;
@@ -183,7 +183,7 @@ const NavWrapper = styled.div`
 `
 
 const TitleWrapper = styled.div`
-  width: 150px;
+  width: 180px;
   display: flex;
   justify-content: center;
 `
