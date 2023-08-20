@@ -1,9 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { useMap } from "react-leaflet";
+
 import ismobilejs from "ismobilejs"
-
-const isMobile = ismobilejs(window.navigator).any;
-
+const isBrowser = () => typeof window !== "undefined"
+let isMobile:boolean;
+if (isBrowser()) {
+  isMobile = ismobilejs(window.navigator).any
+}
 const webAnchors = {
     projectOverview: {
         latlon: [41.984728, -87.688536],

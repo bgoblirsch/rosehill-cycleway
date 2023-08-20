@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import StoryTitle from "./components/StoryTitle"
 
 import ismobilejs from "ismobilejs"
-const isMobile = ismobilejs(window.navigator).any;
+const isBrowser = () => typeof window !== "undefined"
+let isMobile:boolean;
+if (isBrowser()) {
+  isMobile = ismobilejs(window.navigator).any
+}
 
 const ExistingRoutes: React.FC = () => {
   return (
