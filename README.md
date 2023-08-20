@@ -1,49 +1,7 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
-
-## 🚀 Quick start
-
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
-
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
-
-2.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+<h1>Rosehill Cycleway</h1>
+<p>This project is a proposal for the 40th ward's 2023 Participatory Budget.</p>
+<p>Powered by: <a href="https://www.gatsbyjs.com/">Gatsby</a>, <a href="https://react-leaflet.js.org/">React-Leaflet</a></p>
+<p>Most of the spatial data used were created manually by referencing various CDOT planning documents and the 2022 Western Avenue Corridor Study data. As well as by filling in incorrect data and missing routes in the "Bike Routes" data <a href="https://data.cityofchicago.org/Transportation/Bike-Routes/3w5d-sru8">source from the Chicago Data Portal</a>.</p>
+<hr/>
+<p>Because the submission deadline was fast approaching, a few design considerations (i.e. shortcuts) were taken for this application. Since the MVP was done for web only, a rudementary web/mobile split logic approach was used (by rendering different css if a mobile browser is detected), rather than using a mobile-first design.</p>
+<p>Additionally, rather than rendering the custom point icons/markers programatically, they are hard coded because gatsby did not mix well with using custom markers on geojson objects in react-leaflet. <a href="https://stackoverflow.com/questions/47723812/custom-marker-icon-with-react-leaflet">Others found a way to make it work for single marker objects</a> but not for mapping custom icons by feature properties on an entire GeoJSON component. With more time, I would dig more into this issue but for the needs of this project, hard coding the icons was sufficient.</p>
