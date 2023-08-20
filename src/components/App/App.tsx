@@ -13,6 +13,7 @@ import Home from "../Icon/icons/Home"
 import Bike from "../Icon/icons/Bike"
 import Hourglass from "../Icon/icons/Hourglass"
 import RouteIcon from "../Icon/icons/RouteIcon"
+import Mail from "../Icon/icons/Mail"
 
 import { MapController } from "../../helpers/MapController"
 
@@ -97,6 +98,9 @@ const App: React.FC = () => {
             <NavButtonWrapper active={selectedIndex == 3} onClick={() => handleState(3)}>
               <NavButton icon={<RouteIcon color="white"/>} text="Cycleway Route" />
             </NavButtonWrapper>
+            <ContactWrapper onClick={() => window && window.open("https://forms.gle/99janGGyAzhhEcrp8", '_blank').focus()}>
+              <NavButton icon={<Mail color="white"/>} text="Contact" />
+            </ContactWrapper>
           </NavWrapper>}
           {isMobile && <NavWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
               <StyledButton onClick={() => handleState(selectedIndex-1)}>{"<"}</StyledButton>
@@ -208,6 +212,24 @@ const NavButtonWrapper = styled.div<NavButtonWrapperProps>`
     background-color: #445d85;
   };
   background: ${props => props.active ? "#334663" : "#233044"}
+`
+
+const ContactWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 48px;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  &:hover {
+    background-color: #445d85;
+  };
+  background: "#233044";
 `
 
 const StyledButton = styled.button`
