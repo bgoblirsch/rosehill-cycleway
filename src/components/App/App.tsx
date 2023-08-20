@@ -13,6 +13,7 @@ import Home from "../Icon/icons/Home"
 import Bike from "../Icon/icons/Bike"
 import Hourglass from "../Icon/icons/Hourglass"
 import RouteIcon from "../Icon/icons/RouteIcon"
+import Mail from "../Icon/icons/Mail"
 
 import { MapController } from "../../helpers/MapController"
 
@@ -97,6 +98,9 @@ const App: React.FC = () => {
             <NavButtonWrapper active={selectedIndex == 3} onClick={() => handleState(3)}>
               <NavButton icon={<RouteIcon color="white"/>} text="Cycleway Route" />
             </NavButtonWrapper>
+            <ContactWrapper onClick={() => window && window.open("https://forms.gle/99janGGyAzhhEcrp8", '_blank').focus()}>
+              <NavButton icon={<Mail color="white"/>} text="Contact" />
+            </ContactWrapper>
           </NavWrapper>}
           {isMobile && <NavWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
               <StyledButton onClick={() => handleState(selectedIndex-1)}>{"<"}</StyledButton>
@@ -174,8 +178,8 @@ const NavWrapper = styled.div`
   align-items: ${isMobile ? "center" : "flex-start"};
   justify-content: ${isMobile ? "center" : "flex-start"};
   background-color: #233044;
-  padding-top:  ${isMobile ? "16px" : "24px"};
-  padding-bottom:  ${isMobile ? "12px" : "0"};
+  padding-top:  ${isMobile ? "4px" : "24px"};
+  padding-bottom:  ${isMobile ? "2px" : "0"};
   width: ${isMobile ? "100vw" : "230px"};
   min-width: ${isMobile ? "100vw" : "200px"};
   color: white;
@@ -210,11 +214,31 @@ const NavButtonWrapper = styled.div<NavButtonWrapperProps>`
   background: ${props => props.active ? "#334663" : "#233044"}
 `
 
+const ContactWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 48px;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  &:hover {
+    background-color: #445d85;
+  };
+  background: "#233044";
+`
+
 const StyledButton = styled.button`
   border: none;
   color: white;
   background-color: #233044;
-  padding-bottom: 4px;
+  padding: 10px;
+  padding-bottom: 14px;
+  font-size: ${isMobile ?  "18px": "16px"};
 `
 
 const StoryPane = styled.div`
