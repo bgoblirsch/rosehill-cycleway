@@ -174,8 +174,8 @@ const NavWrapper = styled.div`
   align-items: ${isMobile ? "center" : "flex-start"};
   justify-content: ${isMobile ? "center" : "flex-start"};
   background-color: #233044;
-  padding-top:  ${isMobile ? "16px" : "24px"};
-  padding-bottom:  ${isMobile ? "12px" : "0"};
+  padding-top:  ${isMobile ? "4px" : "24px"};
+  padding-bottom:  ${isMobile ? "2px" : "0"};
   width: ${isMobile ? "100vw" : "230px"};
   min-width: ${isMobile ? "100vw" : "200px"};
   color: white;
@@ -214,7 +214,9 @@ const StyledButton = styled.button`
   border: none;
   color: white;
   background-color: #233044;
-  padding-bottom: 4px;
+  padding: 10px;
+  padding-bottom: 14px;
+  font-size: ${isMobile ?  "18px": "16px"};
 `
 
 const StoryPane = styled.div`
