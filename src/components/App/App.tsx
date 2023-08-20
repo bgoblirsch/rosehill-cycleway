@@ -129,9 +129,7 @@ const App: React.FC = () => {
                       West Ridge Nature Park
                     </Popup>
                   </Marker>
-                  
                   {(selectedIndex == 0 || selectedIndex == 3) && <GeoJSON data={rosehillRoute} onEachFeature={rosehillRouteStyle}></GeoJSON>}
-                  
                   {selectedIndex == 1 && <GeoJSON  data={existingRoutes} onEachFeature={existingRoutesStyle}/>}
                   {selectedIndex == 2 && <GeoJSON  data={allRoutes} onEachFeature={allRoutesStyle}/>}
                   {selectedIndex == 2 && <GeoJSON  data={rosehillRouteOffset} pathOptions={dashedRouteOptions}/>}
