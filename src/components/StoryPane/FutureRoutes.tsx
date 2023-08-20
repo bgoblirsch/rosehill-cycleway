@@ -5,7 +5,11 @@ import StoryTitle from "./components/StoryTitle"
 import StoryLink from "./components/StoryLink"
 
 import ismobilejs from "ismobilejs"
-const isMobile = ismobilejs(window.navigator).any;
+const isBrowser = () => typeof window !== "undefined"
+let isMobile:boolean;
+if (isBrowser()) {
+  isMobile = ismobilejs(window.navigator).any
+}
 
 const FutureRoutes: React.FC = () => {
   return (

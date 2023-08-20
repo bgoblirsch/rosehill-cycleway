@@ -28,7 +28,11 @@ import { allRoutesStyle, existingRoutesStyle, rosehillRouteStyle } from "../../c
 import { boundaryOptions, dashedRouteOptions, projectOverviewRouteSettins, ward40MaskOptions, rosehillRouteOptions } from "../../configs/layerStyles"
 
 import ismobilejs from "ismobilejs"
-const isMobile = ismobilejs(window.navigator).any;
+const isBrowser = () => typeof window !== "undefined"
+let isMobile:boolean;
+if (isBrowser()) {
+  isMobile = ismobilejs(window.navigator).any
+}
 
 import L from "leaflet"
 function createIcon(url:string) {
