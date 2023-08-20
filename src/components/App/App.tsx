@@ -32,10 +32,12 @@ const isMobile = ismobilejs(window.navigator).any;
 
 import L from "leaflet"
 function createIcon(url:string) {
-  return new L.Icon({
-    iconSize: [48,48],
-    iconUrl: url,
-  });
+  if (typeof window !== "undefined") {
+    return new L.Icon({
+      iconSize: [48,48],
+      iconUrl: url,
+    });
+  }
 }
 
 const App: React.FC = () => {

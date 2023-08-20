@@ -3,10 +3,12 @@ import { FeatureGroup, Marker, Popup } from 'react-leaflet'
 
 import L from "leaflet"
 function createIcon(url:string) {
-  return new L.Icon({
-    iconSize: [48,48],
-    iconUrl: url,
-  });
+  if (typeof window !== "undefined") {
+    return new L.Icon({
+      iconSize: [48,48],
+      iconUrl: url,
+    });
+  }
 }
 
 const stationIcon = "https://i.imgur.com/dGbqOJ6.png"
