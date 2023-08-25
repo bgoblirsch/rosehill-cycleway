@@ -22,6 +22,21 @@ const webAnchors = {
     }
 }
 
+const mobileAnchors = {
+    projectOverview: {
+        latlon: [41.982728, -87.688536],
+        zoom: 13.3
+    },
+    routeOverview: {
+        latlon: [41.983728, -87.68306],
+        zoom: 14.5
+    },
+    futureRoutes: {
+        latlon: [41.983728, -87.68306],
+        zoom: 14.5
+    }
+}
+
 const webHome = {
     lat: webAnchors.projectOverview.latlon[0],
     lng: webAnchors.projectOverview.latlon[1]
@@ -35,21 +50,6 @@ const webRouteOverview = {
 const webFutureRoutes = {
     lat: webAnchors.futureRoutes.latlon[0],
     lng: webAnchors.futureRoutes.latlon[1]
-}
-
-const mobileAnchors = {
-    projectOverview: {
-        latlon: [41.982728, -87.688536],
-        zoom: 13.5
-    },
-    routeOverview: {
-        latlon: [41.983728, -87.68306],
-        zoom: 14.5
-    },
-    futureRoutes: {
-        latlon: [41.983728, -87.68306],
-        zoom: 14.5
-    }
 }
 
 const mobileHome = {
