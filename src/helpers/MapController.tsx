@@ -10,7 +10,7 @@ if (isBrowser()) {
 const webAnchors = {
     projectOverview: {
         latlon: [41.984728, -87.688536],
-        zoom: 14.3
+        zoom: 14
     },
     routeOverview: {
         latlon: [41.984728, -87.68106],
