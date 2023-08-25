@@ -26,7 +26,7 @@ import rosehillRouteOffset from "../Map/layers/rosehill_route_offset";
 import Markers from "../Map/components/Markers"
 
 import { allRoutesStyle, existingRoutesStyle, rosehillRouteStyle } from "../../configs/layerStyles";
-import { boundaryOptions, dashedRouteOptions, projectOverviewRouteSettins, ward40MaskOptions, rosehillRouteOptions } from "../../configs/layerStyles"
+import { boundaryOptions, dashedRouteOptions, ward40MaskOptions } from "../../configs/layerStyles"
 
 import ismobilejs from "ismobilejs"
 const isBrowser = () => typeof window !== "undefined"
