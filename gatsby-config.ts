@@ -22,8 +22,7 @@ const config: GatsbyConfig = {
       options: {
         trackingIds: ["G-CL1CYXCEQ1"],
         pluginConfig: {
-          head: true,
-          anonymize_ip: true
+          head: true
         }
       }
     },
