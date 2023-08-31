@@ -54,8 +54,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #233044;
-  gap: 24px;
-  padding: 32px;
+  gap: ${isMobile ? "20px" : "24px"};
+  padding: ${isMobile ? "24px" : "32px"};
   color: white;
   font-size: 17px;
 `
