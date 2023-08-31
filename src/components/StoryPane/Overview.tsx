@@ -52,7 +52,7 @@ const Overview: React.FC = () => {
             {"Ward Boundaries"}
           </LegendItem>
         </Legend>
-        <p>Rosehill Cemetery lies at the heart of Ward 40. Being a rather sizeable cemetery, it presents a bit of an obstacle for navigating parts of the Ward on bike.</p>
+        <p>Rosehill Cemetery lies at the heart of the 40th ward. Being a rather sizeable cemetery, it presents a bit of an obstacle for navigating parts of the Ward on bike.</p>
         <p>However, because there are no thru-streets, the cemetery provides a unique opportunity for a <StoryLink to="https://www.chicago.gov/city/en/depts/cdot/provdrs/bike/news/2023/march/cdot-releases-updated-cycling-strategy-to-expand-bike-network-an.html" text="low-stress"></StoryLink>, <StoryLink to="https://lede-admin.chi.streetsblog.org/wp-content/uploads/sites/51/2017/06/Biker-entering-Chicago-Avenue-Bike-Lane-at-the-Sheridan-Road-Curve-1-1.jpg?w=3840&q=75" text="two-way protected bike path"/> around its perimeter. With the exception of a few driveways in the southwest corner of the cemetery and the new Metra Station parking lot, the entire 3 mile loop could be completely grade separated from car traffic.</p>
         <p>The cycleway would connect directly to the new Peterson/Ridge Metra station, the Berwyn Neigbhorhood Greenway, and West Ridge Nature Park. Portions of the loop have already been identified as planned/potential bike routes, or are existing bike routes.</p>
         <Bold>Please note, that Phase 3 is not included in the scope of this proposal.</Bold> 
@@ -80,7 +80,7 @@ const Wrapper = styled.div`
 const Legend = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #334663;
+  background-color: #3c485c;
   border-radius: 8px;
   align-items: flex-start;
   padding: 8px;

@@ -24,8 +24,8 @@ const webAnchors = {
 
 const mobileAnchors = {
     projectOverview: {
-        latlon: [41.982728, -87.688536],
-        zoom: 13.3
+        latlon: [41.984128, -87.688536],
+        zoom: 13.15
     },
     routeOverview: {
         latlon: [41.983728, -87.68306],

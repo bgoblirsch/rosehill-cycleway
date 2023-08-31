@@ -8,6 +8,7 @@ import Overview from "../StoryPane/Overview"
 import ExistingRoutes from "../StoryPane/ExistingRoutes"
 import FutureRoutes from "../StoryPane/FutureRoutes"
 import Route from "../StoryPane/Route"
+import MoreInfo from "../StoryPane/MoreInfo"
 
 import Home from "../Icon/icons/Home"
 import Bike from "../Icon/icons/Bike"
@@ -47,11 +48,12 @@ function createIcon(url:string) {
 
 const App: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const storyPaneCount = 4
   const handleState = (payload:number) => {
-    if (payload > 3) {
+    if (payload > storyPaneCount) {
       setSelectedIndex(0)
     } else if (payload < 0) {
-      setSelectedIndex(3)
+      setSelectedIndex(storyPaneCount)
     } else {
       setSelectedIndex(payload)
     }
@@ -98,9 +100,9 @@ const App: React.FC = () => {
             <NavButtonWrapper active={selectedIndex == 3} onClick={() => handleState(3)}>
               <NavButton icon={<RouteIcon color="white"/>} text="Cycleway Route" />
             </NavButtonWrapper>
-            <ContactWrapper onClick={() => window && window.open("https://forms.gle/99janGGyAzhhEcrp8", '_blank').focus()}>
-              <NavButton icon={<Mail color="white"/>} text="Contact" />
-            </ContactWrapper>
+            <NavButtonWrapper active={selectedIndex == 4} onClick={() => handleState(4)}>
+              <NavButton icon={<Mail color="white"/>} text="More Info" />
+            </NavButtonWrapper>
           </NavWrapper>}
           {isMobile && <NavWrapper onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
               <StyledButton onClick={() => handleState(selectedIndex-1)}>{"<"}</StyledButton>
@@ -109,6 +111,7 @@ const App: React.FC = () => {
                 {selectedIndex === 1 && "Existing Bike Routes"}
                 {selectedIndex === 2 && "Future Bike Routes"}
                 {selectedIndex === 3 && "Cycleway Route"}
+                {selectedIndex === 4 && "More Info"}
               </TitleWrapper>
               <StyledButton onClick={() => handleState(selectedIndex+1)}>{">"}</StyledButton>
           </NavWrapper>}
@@ -139,11 +142,11 @@ const App: React.FC = () => {
                       West Ridge Nature Park
                     </Popup>
                   </Marker>
-                  {(selectedIndex == 0 || selectedIndex == 3) && <GeoJSON data={rosehillRoute} onEachFeature={rosehillRouteStyle}></GeoJSON>}
+                  {(selectedIndex == 0 || selectedIndex > 2) && <GeoJSON data={rosehillRoute} onEachFeature={rosehillRouteStyle}></GeoJSON>}
                   {selectedIndex == 1 && <GeoJSON  data={existingRoutes} onEachFeature={existingRoutesStyle}/>}
                   {selectedIndex == 2 && <GeoJSON  data={allRoutes} onEachFeature={allRoutesStyle}/>}
                   {selectedIndex == 2 && <GeoJSON  data={rosehillRouteOffset} pathOptions={dashedRouteOptions}/>}
-                  {selectedIndex == 3 && <Markers/>}
+                  {selectedIndex > 2 && <Markers/>}
           </MapContainer>
           </MapWrapper>
           <StoryPane  onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
@@ -151,6 +154,7 @@ const App: React.FC = () => {
             {selectedIndex === 1 && <ExistingRoutes/>}
             {selectedIndex === 2 && <FutureRoutes/>}
             {selectedIndex === 3 && <Route/>}
+            {selectedIndex === 4 && <MoreInfo/>}
           </StoryPane>
     </AppWrapper>
   )
@@ -180,7 +184,7 @@ const NavWrapper = styled.div`
   background-color: #233044;
   padding-top:  ${isMobile ? "4px" : "24px"};
   padding-bottom:  ${isMobile ? "2px" : "0"};
-  width: ${isMobile ? "100vw" : "230px"};
+  width: ${!isMobile ? "230px" : "100vw"};
   min-width: ${isMobile ? "100vw" : "200px"};
   color: white;
   gap: 8px;
@@ -237,8 +241,9 @@ const StyledButton = styled.button`
   color: white;
   background-color: #233044;
   padding: 10px;
-  padding-bottom: 14px;
-  font-size: ${isMobile ?  "18px": "16px"};
+  padding-bottom: 8px;
+  font-size: 16px;
+  justify-content: center;
 `
 
 const StoryPane = styled.div`

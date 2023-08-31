@@ -24,7 +24,7 @@
     "@types/react-leaflet": "^3.0.0",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.11.0",
-    "gatsby-plugin-google-gtag": "^5.11.0",
+    "gatsby-plugin-google-gtag": "^5.12.0",
     "gatsby-plugin-gtag": "^1.0.13",
     "gatsby-plugin-react-leaflet": "^4.0.3",
     "gatsby-plugin-styled-components": "^6.11.0",

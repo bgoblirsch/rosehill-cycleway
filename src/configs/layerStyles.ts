@@ -28,6 +28,7 @@ export const rosehillRouteStyle = (feature:any, layer:any) => {
 }
 
 export const existingRoutesStyle = (feature:any, layer:any) => {
+    layer.options.weight = 5;
     switch (feature.properties.stress_lvl) {
       case 1: 
         layer.options.color = "green"
