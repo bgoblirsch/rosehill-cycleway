@@ -28,21 +28,18 @@ export const rosehillRouteStyle = (feature:any, layer:any) => {
 }
 
 export const existingRoutesStyle = (feature:any, layer:any) => {
-    layer.options.weight = 5;
+    layer.options.weight = 4;
     switch (feature.properties.stress_lvl) {
-      case 1: 
+      case 1:
         layer.options.color = "green"
         break
-      case 2:   
-      layer.options.color = "yellow"
+      case 2:
+        layer.options.color = "yellow"
         break
-      case 3:   
+      case 3 || 4:
         layer.options.color = "orange"
         break
-      case 4:   
-        layer.options.color = "red"
-        break
-      default: 
+      default:
         layer.options.color = "black"
         break
     }
@@ -51,7 +48,7 @@ export const existingRoutesStyle = (feature:any, layer:any) => {
 export const allRoutesStyle = (feature:any, layer:any) => {
   switch (feature.properties.type) {
     case "existing": 
-      layer.options.color = "blue"
+      layer.options.color = "green"
       break
     case "planned":   
     layer.options.color = "rgb(139, 4, 201)"
