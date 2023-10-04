@@ -39,7 +39,7 @@ const ExistingRoutes: React.FC = () => {
         </Legend>
         <p>Being borderd by the North Shore Channel Trail on the west and Clark Street on the east, Ward 40 has a great foundation for a bike network. </p>
         <p>The proposed Rosehill Cycleway route would diretly connect to the Neighborhood Greenway on Berwyn Avenue.</p>
-        <p>Lastly, the existing bike route on Damen Avenue and Bryn Mawr Avenue consists of non-protected bike lanes on a truck route. Shifting the routes to a protected lane would vastly increase safety.</p>
+        <p>Lastly, the existing bike route on Damen Avenue and Bryn Mawr Avenue consists of unprotected bike lanes on a truck route. Shifting the routes to a protected lane would vastly increase safety.</p>
         <p>&nbsp;</p>
     </Wrapper>
   )
