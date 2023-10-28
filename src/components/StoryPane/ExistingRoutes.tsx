@@ -23,14 +23,14 @@ const ExistingRoutes: React.FC = () => {
             {"Protected Lanes & Mixed-use Paths"}
           </LegendItem>
           <LegendItem>
-              <svg stroke="yellow" stroke-width="4" height="10" width="30">
+              <svg stroke="orange" stroke-width="4" height="10" width="30">
                 <line x1="0" y1="5" x2="30" y2="5" />
               </svg> 
             {"Medium Stress Bike Route"}<br/>
             {"Nbhd. Greenways & Buffered Lanes"}
           </LegendItem>
           <LegendItem>
-              <svg stroke="orange" stroke-width="4" height="10" width="30">
+              <svg stroke="red" stroke-width="4" height="10" width="30">
                 <line x1="0" y1="5" x2="30" y2="5" />
               </svg> 
             {"High Stress Bike Route"}<br/>
