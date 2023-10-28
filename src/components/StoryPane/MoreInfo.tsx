@@ -16,11 +16,13 @@ const MoreInfo: React.FC = () => {
   const linkStyle = { color: "white" }
   return (
     <Wrapper>
-        <StoryTitle text="Contact &#38; More Info"/>
-        <p>This website is for informational purposes only. While the owner of this site has strived to ensure accurate data, this site makes no warranty, representation, or guaranty as to the content, accuracy, timeliness, or completeness of any of the data provided at this website.</p>
-        <p>Most data was sourced from <StoryLink to="https://data.cityofchicago.org/" text="the Chicago Data Portal"></StoryLink> and the existing bike route data received a few edits to better reflect the actual bike network. Future bike routes have been pulled from various sources including CDOT's greater bike network plan [NEED LINK] and project planning documents. Links to sources are included where possible and can be seen by clicking on a feature in the map.</p>
-        <p>If you have any feedback or questions about this website, I'd love to hear from you. I would also appreciate reports for any data inaccuracies. You may use this <StoryLink to="https://forms.gle/vrPuhXooxCL5Tvee6" text="Google form [NEED NEW FORM LINK]"></StoryLink> to get in touch.</p>
+        <StoryTitle text="More Info"/>
+        <p>Please make sure to check out the other projects once they have been posted! To stay up to date, the 40th ward's blog can be found at: <StoryLink to="https://40thward.org/blog/" text="https://40thward.org/blog/"></StoryLink></p>
+        <p>For more information on Participatory Budgeting and the process, see the 40th ward's website: <StoryLink to="https://40thward.org/topics-and-services/participatory-budgeting/" text="https://40thward.org/topics-and-services/participatory-budgeting/"></StoryLink></p>
+        <p>If you have any feedback or questions about this project proposal or the website, I'd love to hear from you. I would also appreciate reports for any data inaccuracies. You may use this <StoryLink to="https://forms.gle/vrPuhXooxCL5Tvee6" text="Google form"></StoryLink> to get in touch.</p>
+        <Disclaimer>The data for the ward boundaries and existing bike routes were sourced from the <StoryLink to="https://data.cityofchicago.org/" text="Chicago Data Portal"></StoryLink> and the existing bike route data received a few edits to better reflect the actual bike network. All other data was manually digitized for the purpose of this proposal.</Disclaimer>
         <Disclaimer><Link target="_blank" to="/privacy-policy" style={{ color: 'white' }}>Privacy Policy</Link></Disclaimer>
+
         <p>&nbsp;</p>
     </Wrapper>
   )

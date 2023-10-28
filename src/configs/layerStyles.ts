@@ -34,10 +34,10 @@ export const existingRoutesStyle = (feature:any, layer:any) => {
         layer.options.color = "green"
         break
       case 2:
-        layer.options.color = "orange"
+        layer.options.color = "yellow"
         break
       case 3 || 4:
-        layer.options.color = "red"
+        layer.options.color = "orange"
         break
       default:
         layer.options.color = "black"
