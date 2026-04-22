@@ -2,6 +2,8 @@
 
 Interactive Gatsby site for the Rosehill Cycleway proposal, featuring a React-Leaflet map with custom layers, POIs, and story panes that explain route plans and impacts.
 
+https://rosehillcycleway.netlify.app/
+
 ![Rosehill Cycleway preview](rosehill_cycleway_preview.gif)
 
 ## What this is
